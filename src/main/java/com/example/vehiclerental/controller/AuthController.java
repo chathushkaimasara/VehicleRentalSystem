@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class AuthController {
@@ -16,13 +17,11 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-    // 1. Show the Login Page
     @GetMapping("/login")
     public String showLoginForm() {
         return "login"; // This looks for login.jsp
     }
 
-    // 2. Process the Login Data
     @PostMapping("/login")
     public String processLogin(@RequestParam("username") String username,
                                @RequestParam("password") String password,
@@ -45,4 +44,10 @@ public class AuthController {
         session.invalidate();
         return "redirect:/login";
     }
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() {
+        return "Controller is working!";
+    }
+
 }

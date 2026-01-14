@@ -1,4 +1,4 @@
-package com.nsbm.vehiclerentalsystem;
+package com.example.vehiclerental;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

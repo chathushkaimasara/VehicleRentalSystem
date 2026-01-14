@@ -1,4 +1,4 @@
-package com.nsbm.vehiclerentalsystem;
+package com.example.vehiclerental;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
