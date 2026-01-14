@@ -15,6 +15,9 @@
     <c:choose>
         <c:when test="${not empty sessionScope.loggedInUser}">
             <span>Welcome, <b>${sessionScope.loggedInUser.fullName}</b>!</span>
+
+            | <a href="/rentals/myBookings">My Bookings</a> |
+
             <a href="/logout" style="float: right;">Logout</a>
         </c:when>
         <c:otherwise>
