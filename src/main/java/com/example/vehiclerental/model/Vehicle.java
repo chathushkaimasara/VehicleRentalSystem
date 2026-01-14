@@ -35,4 +35,11 @@ public class Vehicle {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    // Add this variable
+    private String image;
+
+    // Add these methods at the bottom
+    public String getImage() { return image; }
+    public void setImage(String image) { this.image = image; }
 }

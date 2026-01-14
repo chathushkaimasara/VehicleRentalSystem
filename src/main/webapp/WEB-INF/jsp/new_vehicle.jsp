@@ -17,6 +17,10 @@
     <label>Price:</label>
     <form:input path="pricePerDay" /><br><br>
 
+    <label>Image URL:</label>
+    <form:input path="image" placeholder="Paste image link here..." class="form-control" />
+    <br><br>
+
     <label>Status:</label>
     <form:input path="status" /><br><br>
 

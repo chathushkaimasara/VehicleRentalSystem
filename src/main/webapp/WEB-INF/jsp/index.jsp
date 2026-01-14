@@ -29,6 +29,7 @@
 </c:if>
 <form action="/" method="get" class="mb-3">
     <div class="input-group">
+        <th>Image</th>
         <input type="text" name="keyword" class="form-control" placeholder="Search by Brand or Model (e.g., Toyota)" value="${keyword}">
         <button type="submit" class="btn btn-primary">Search</button>
         <a href="/" class="btn btn-secondary">Reset</a>
@@ -46,6 +47,14 @@
 
     <c:forEach var="vehicle" items="${listVehicles}">
         <tr>
+            <td>
+                <c:if test="${not empty vehicle.image}">
+                    <img src="${vehicle.image}" alt="Car" style="width: 100px; height: 60px; object-fit: cover; border-radius: 5px;">
+                </c:if>
+                <c:if test="${empty vehicle.image}">
+                    <span class="text-muted">No Image</span>
+                </c:if>
+            </td>
             <td><c:out value="${vehicle.vehicleID}" /></td>
             <td><c:out value="${vehicle.brand}" /></td>
             <td><c:out value="${vehicle.model}" /></td>
