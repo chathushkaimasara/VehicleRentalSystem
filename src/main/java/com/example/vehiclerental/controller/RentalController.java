@@ -48,8 +48,20 @@ public class RentalController {
     @PostMapping("/confirmBooking")
     public String confirmBooking(@ModelAttribute("rental") Rental rental) {
 
-        if (rental.getReturnDate().isBefore(rental.getRentalDate())) {
-            return "redirect:/book/" + rental.getVehicle().getVehicleID() + "?error=dates";
+        if (rental.getRentalDate() != null && rental.getReturnDate() != null) {
+            if (rental.getReturnDate().isBefore(rental.getRentalDate())) {
+                return "redirect:/rentals/book/" + rental.getVehicle().getVehicleID() + "?error=dates";
+            }
+        }
+
+        long conflictingBookings = rentalRepository.countOverlappingRentals(
+                rental.getVehicle().getVehicleID(),
+                rental.getRentalDate(),
+                rental.getReturnDate()
+        );
+
+        if (conflictingBookings > 0) {
+            return "redirect:/rentals/book/" + rental.getVehicle().getVehicleID() + "?error=unavailable";
         }
 
         rentalService.createRental(rental);

@@ -12,6 +12,11 @@
     <strong>Error:</strong> You cannot return the car before you pick it up! Please check your dates.
 </div>
 <% } %>
+<% if ("unavailable".equals(request.getParameter("error"))) { %>
+<div style="color: #721c24; background-color: #f8d7da; padding: 10px; border: 1px solid #f5c6cb; margin-bottom: 15px;">
+    <strong>Unavailable!</strong> This car is already booked for those dates. Please try different dates.
+</div>
+<% } %>
 <p>Price per Day: $${vehicle.pricePerDay}</p>
 
 <form:form action="/rentals/confirmBooking" method="post" modelAttribute="rental">

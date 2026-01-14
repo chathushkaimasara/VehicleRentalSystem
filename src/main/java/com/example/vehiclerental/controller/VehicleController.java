@@ -22,17 +22,16 @@ public class VehicleController {
         List<Vehicle> listVehicles;
 
         if (keyword != null && !keyword.isEmpty()) {
-            // If user searched for something, use our new custom search
-            listVehicles = vehicleRepository.findByBrandContainingIgnoreCaseOrModelContainingIgnoreCase(keyword, keyword);
+            listVehicles = vehicleRepository.searchActiveVehicles(keyword);
         } else {
-            // Otherwise, show everything
-            listVehicles = vehicleRepository.findAll();
+            listVehicles = vehicleRepository.findByStatusNot("Deleted");
         }
 
         model.addAttribute("listVehicles", listVehicles);
-        model.addAttribute("keyword", keyword); // Send the keyword back so it stays in the search box
+        model.addAttribute("keyword", keyword);
         return "index";
     }
+
 
     @GetMapping("/showNewVehicleForm")
     public String showNewVehicleForm(HttpSession session, Model model) {
@@ -54,8 +53,18 @@ public class VehicleController {
     }
 
     @GetMapping("/deleteVehicle/{id}")
-    public String deleteVehicle(@PathVariable(value = "id") int id) {
-        vehicleRepository.deleteById(id);
+    public String deleteVehicle(@PathVariable(value = "id") int id, HttpSession session) {
+        User user = (User) session.getAttribute("loggedInUser");
+        if (user == null || !"ADMIN".equals(user.getRole())) {
+            return "redirect:/";
+        }
+
+        Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
+        if (vehicle != null) {
+            vehicle.setStatus("Deleted");
+            vehicleRepository.save(vehicle);
+        }
+
         return "redirect:/";
     }
 }

@@ -27,16 +27,17 @@
     <a href="/showNewVehicleForm" style="background: green; color: white; padding: 5px; text-decoration: none;">+ Add New Vehicle</a>
     <br><br>
 </c:if>
-<form action="/" method="get" class="mb-3">
-    <div class="input-group">
-        <th>Image</th>
-        <input type="text" name="keyword" class="form-control" placeholder="Search by Brand or Model (e.g., Toyota)" value="${keyword}">
-        <button type="submit" class="btn btn-primary">Search</button>
-        <a href="/" class="btn btn-secondary">Reset</a>
-    </div>
-</form>
+
 <table class="table table-striped table-hover table-bordered shadow-sm">
     <tr>
+        <form action="/" method="get" class="mb-3">
+            <div class="input-group">
+                <th>Image</th>
+                <input type="text" name="keyword" class="form-control" placeholder="Search by Brand or Model (e.g., Toyota)" value="${keyword}">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href="/" class="btn btn-secondary">Reset</a>
+            </div>
+        </form>
         <th>ID</th>
         <th>Brand</th>
         <th>Model</th>
@@ -49,7 +50,7 @@
         <tr>
             <td>
                 <c:if test="${not empty vehicle.image}">
-                    <img src="${vehicle.image}" alt="Car" style="width: 100px; height: 60px; object-fit: cover; border-radius: 5px;">
+                    <img src="${vehicle.image}" alt="Car" style="width: 200px; height: 120px; object-fit: cover; border-radius: 8px;">
                 </c:if>
                 <c:if test="${empty vehicle.image}">
                     <span class="text-muted">No Image</span>
