@@ -19,7 +19,7 @@
 <% } %>
 <p>Price per Day: $${vehicle.pricePerDay}</p>
 
-<form:form action="/rentals/confirmBooking" method="post" modelAttribute="rental">
+<form:form method="post" action="/rentals/checkout" modelAttribute="rental">
 
     <form:hidden path="vehicle" value="${vehicle.vehicleID}"/>
     <form:hidden path="user" value="${sessionScope.loggedInUser.userID}"/>
