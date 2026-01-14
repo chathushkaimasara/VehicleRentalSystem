@@ -27,7 +27,7 @@
     <a href="/showNewVehicleForm" style="background: green; color: white; padding: 5px; text-decoration: none;">+ Add New Vehicle</a>
     <br><br>
 </c:if>
-<table class="table table-striped table-hover table-bordered">
+<table class="table table-striped table-hover table-bordered shadow-sm">
     <tr>
         <th>ID</th>
         <th>Brand</th>
@@ -36,17 +36,7 @@
         <th>Status</th>
         <th>Actions</th>
     </tr>
-    <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>
-            <a href="/book/${vehicle.vehicleID}">Book Now</a>
 
-            <c:if test="${sessionScope.loggedInUser.role == 'ADMIN'}">
-                | <a href="/deleteVehicle/${vehicle.vehicleID}">Delete</a>
-            </c:if>
-        </td>
-    </tr>
     <c:forEach var="vehicle" items="${listVehicles}">
         <tr>
             <td><c:out value="${vehicle.vehicleID}" /></td>
@@ -55,10 +45,13 @@
             <td><c:out value="${vehicle.pricePerDay}" /></td>
             <td><c:out value="${vehicle.status}" /></td>
             <td>
-                <a href="/deleteVehicle/${vehicle.vehicleID}">Delete</a>
+                <a href="/rentals/book/${vehicle.vehicleID}" class="btn btn-success btn-sm">Book Now</a>
+
+                <c:if test="${sessionScope.loggedInUser.role == 'ADMIN'}">
+                    | <a href="/deleteVehicle/${vehicle.vehicleID}" class="btn btn-danger btn-sm">Delete</a>
+                </c:if>
             </td>
         </tr>
-    </c:forEach>
-</table>
+    </c:forEach> </table>
 </body>
 </html>

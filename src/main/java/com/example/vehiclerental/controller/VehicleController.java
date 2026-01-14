@@ -18,7 +18,7 @@ public class VehicleController {
     @GetMapping("/")
     public String viewHomePage(Model model) {
         model.addAttribute("listVehicles", vehicleRepository.findAll());
-        return "index"; // Looks for index.jsp
+        return "index";
     }
 
     @GetMapping("/showNewVehicleForm")

@@ -46,10 +46,16 @@ public class RentalController {
     }
 
     @PostMapping("/confirmBooking")
-    public String confirmBooking(@ModelAttribute("rental") Rental rental, HttpSession session) {
+    public String confirmBooking(@ModelAttribute("rental") Rental rental) {
+
+        if (rental.getReturnDate().isBefore(rental.getRentalDate())) {
+            return "redirect:/book/" + rental.getVehicle().getVehicleID() + "?error=dates";
+        }
+
         rentalService.createRental(rental);
         return "redirect:/?success=booking";
     }
+
     @GetMapping("/myBookings")
     public String showMyBookings(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");

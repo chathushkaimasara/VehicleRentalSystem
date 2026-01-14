@@ -6,10 +6,15 @@
 </head>
 <body>
 <h1>Book: ${vehicle.brand} ${vehicle.model}</h1>
+
+<% if (request.getParameter("error") != null) { %>
+<div style="color: red; background-color: #ffdddd; padding: 10px; border: 1px solid red; margin-bottom: 15px;">
+    <strong>Error:</strong> You cannot return the car before you pick it up! Please check your dates.
+</div>
+<% } %>
 <p>Price per Day: $${vehicle.pricePerDay}</p>
 
 <form:form action="/rentals/confirmBooking" method="post" modelAttribute="rental">
-
 
     <form:hidden path="vehicle" value="${vehicle.vehicleID}"/>
     <form:hidden path="user" value="${sessionScope.loggedInUser.userID}"/>
