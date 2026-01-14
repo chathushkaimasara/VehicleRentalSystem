@@ -35,6 +35,17 @@
         <th>Status</th>
         <th>Actions</th>
     </tr>
+    <tr>
+        <td>...</td>
+        <td>...</td>
+        <td>
+            <a href="/book/${vehicle.vehicleID}">Book Now</a>
+
+            <c:if test="${sessionScope.loggedInUser.role == 'ADMIN'}">
+                | <a href="/deleteVehicle/${vehicle.vehicleID}">Delete</a>
+            </c:if>
+        </td>
+    </tr>
     <c:forEach var="vehicle" items="${listVehicles}">
         <tr>
             <td><c:out value="${vehicle.vehicleID}" /></td>
