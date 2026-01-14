@@ -11,6 +11,18 @@
     </style>
 </head>
 <body>
+<div style="background: #eee; padding: 10px; margin-bottom: 20px;">
+    <c:choose>
+        <c:when test="${not empty sessionScope.loggedInUser}">
+            <span>Welcome, <b>${sessionScope.loggedInUser.fullName}</b>!</span>
+            <a href="/logout" style="float: right;">Logout</a>
+        </c:when>
+        <c:otherwise>
+            <a href="/login">Login</a>
+        </c:otherwise>
+    </c:choose>
+</div>
+
 <h1>Vehicle Inventory</h1>
 <a href="/showNewVehicleForm">Add New Vehicle</a>
 <br><br>
