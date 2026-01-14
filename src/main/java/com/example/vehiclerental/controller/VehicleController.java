@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpSession;
+import com.example.vehiclerental.model.User;
 
 @Controller
 public class VehicleController {
@@ -20,7 +22,13 @@ public class VehicleController {
     }
 
     @GetMapping("/showNewVehicleForm")
-    public String showNewVehicleForm(Model model) {
+    public String showNewVehicleForm(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("loggedInUser");
+
+        if (user == null || !"ADMIN".equals(user.getRole())) {
+            return "redirect:/";
+        }
+
         Vehicle vehicle = new Vehicle();
         model.addAttribute("vehicle", vehicle);
         return "new_vehicle";

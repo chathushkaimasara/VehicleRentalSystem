@@ -2,13 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login - Vehicle Rental</title>
-    <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
-        .login-container { border: 1px solid #ccc; padding: 20px; border-radius: 5px; width: 300px; }
-        .error { color: red; }
-    </style>
+    <title>Vehicle Rental System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
 <div class="login-container">
     <h2>Login</h2>

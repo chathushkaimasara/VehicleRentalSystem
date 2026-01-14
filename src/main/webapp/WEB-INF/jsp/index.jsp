@@ -3,12 +3,7 @@
 <html>
 <head>
     <title>Vehicle Rental System</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        th { background-color: #4CAF50; color: white; }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div style="background: #eee; padding: 10px; margin-bottom: 20px;">
@@ -27,9 +22,12 @@
 </div>
 
 <h1>Vehicle Inventory</h1>
-<a href="/showNewVehicleForm">Add New Vehicle</a>
-<br><br>
-<table>
+
+<c:if test="${sessionScope.loggedInUser.role == 'ADMIN'}">
+    <a href="/showNewVehicleForm" style="background: green; color: white; padding: 5px; text-decoration: none;">+ Add New Vehicle</a>
+    <br><br>
+</c:if>
+<table class="table table-striped table-hover table-bordered">
     <tr>
         <th>ID</th>
         <th>Brand</th>

@@ -50,7 +50,6 @@ public class RentalController {
         rentalService.createRental(rental);
         return "redirect:/?success=booking";
     }
-    // Add this to RentalController.java
     @GetMapping("/myBookings")
     public String showMyBookings(HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
