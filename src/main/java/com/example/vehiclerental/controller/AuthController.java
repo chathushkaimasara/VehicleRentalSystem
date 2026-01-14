@@ -22,6 +22,23 @@ public class AuthController {
         return "login";
     }
 
+    @PostMapping("/login")
+    public String processLogin(@RequestParam("username") String username,
+                               @RequestParam("password") String password,
+                               HttpSession session,
+                               Model model) {
+
+        User user = userService.authenticate(username, password);
+
+        if (user != null) {
+            session.setAttribute("loggedInUser", user);
+            return "redirect:/";
+        } else {
+            model.addAttribute("error", "Invalid Username or Password");
+            return "login";
+        }
+    }
+
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new User());

@@ -8,7 +8,8 @@
 <h1>Book: ${vehicle.brand} ${vehicle.model}</h1>
 <p>Price per Day: $${vehicle.pricePerDay}</p>
 
-<form:form action="/confirmBooking" method="post" modelAttribute="rental">
+<form:form action="/rentals/confirmBooking" method="post" modelAttribute="rental">
+
 
     <form:hidden path="vehicle" value="${vehicle.vehicleID}"/>
     <form:hidden path="user" value="${sessionScope.loggedInUser.userID}"/>

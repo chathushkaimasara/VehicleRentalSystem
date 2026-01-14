@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/rentals")
 public class RentalController {
+
 
     @Autowired
     private RentalService rentalService;
@@ -25,7 +27,7 @@ public class RentalController {
     public String showBookingForm(@PathVariable int vehicleId, HttpSession session, Model model) {
         User user = (User) session.getAttribute("loggedInUser");
         if (user == null) {
-            return "redirect:/login"; // Force login
+            return "redirect:/login";
         }
 
         Vehicle vehicle = vehicleRepository.findById(vehicleId).orElse(null);
@@ -36,15 +38,13 @@ public class RentalController {
         model.addAttribute("rental", rental);
         model.addAttribute("vehicle", vehicle);
 
-        return "book_vehicle"; // Loads book_vehicle.jsp
+        return "book_vehicle";
     }
-
 
     @PostMapping("/confirmBooking")
     public String confirmBooking(@ModelAttribute("rental") Rental rental, HttpSession session) {
-
-
         rentalService.createRental(rental);
         return "redirect:/?success=booking";
     }
+
 }
