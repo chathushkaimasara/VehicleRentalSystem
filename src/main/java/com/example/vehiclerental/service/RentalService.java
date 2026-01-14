@@ -26,4 +26,14 @@ public class RentalService {
         rental.setStatus("PENDING");
         rentalRepository.save(rental);
     }
+    public void cancelRental(int rentalId) {
+
+        Rental rental = rentalRepository.findById(rentalId).orElse(null);
+
+
+        if (rental != null) {
+            rental.setStatus("CANCELLED");
+            rentalRepository.save(rental);
+        }
+    }
 }

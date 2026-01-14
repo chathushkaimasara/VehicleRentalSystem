@@ -69,6 +69,19 @@ public class RentalController {
 
         return "my_bookings";
     }
+    @PostMapping("/cancel")
+    public String cancelRental(@RequestParam("id") int id, HttpSession session) {
+
+        User user = (User) session.getAttribute("loggedInUser");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+
+        rentalService.cancelRental(id);
+
+        return "redirect:/rentals/myBookings";
+    }
 
 
 }

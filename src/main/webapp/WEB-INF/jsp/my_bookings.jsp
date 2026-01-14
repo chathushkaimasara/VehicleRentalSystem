@@ -27,6 +27,20 @@
       <td>
         <span class="status-${rental.status}">${rental.status}</span>
       </td>
+      <td>
+        <span class="badge bg-${rental.status == 'PENDING' ? 'warning' : (rental.status == 'CANCELLED' ? 'danger' : 'success')} text-dark">
+            ${rental.status}
+        </span>
+
+        <c:if test="${rental.status == 'PENDING'}">
+          <form action="/rentals/cancel" method="post" style="display:inline; margin-left: 10px;">
+            <input type="hidden" name="id" value="${rental.rentalID}"/>
+            <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to cancel?');">
+              Cancel
+            </button>
+          </form>
+        </c:if>
+      </td>
     </tr>
   </c:forEach>
 </table>
