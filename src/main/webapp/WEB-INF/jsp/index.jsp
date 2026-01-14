@@ -27,6 +27,13 @@
     <a href="/showNewVehicleForm" style="background: green; color: white; padding: 5px; text-decoration: none;">+ Add New Vehicle</a>
     <br><br>
 </c:if>
+<form action="/" method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="keyword" class="form-control" placeholder="Search by Brand or Model (e.g., Toyota)" value="${keyword}">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="/" class="btn btn-secondary">Reset</a>
+    </div>
+</form>
 <table class="table table-striped table-hover table-bordered shadow-sm">
     <tr>
         <th>ID</th>

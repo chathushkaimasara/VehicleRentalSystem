@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 import com.example.vehiclerental.model.User;
+import java.util.List;
+
 
 @Controller
 public class VehicleController {
@@ -16,8 +18,19 @@ public class VehicleController {
     private VehicleRepository vehicleRepository;
 
     @GetMapping("/")
-    public String viewHomePage(Model model) {
-        model.addAttribute("listVehicles", vehicleRepository.findAll());
+    public String viewHomePage(Model model, @RequestParam(value = "keyword", required = false) String keyword) {
+        List<Vehicle> listVehicles;
+
+        if (keyword != null && !keyword.isEmpty()) {
+            // If user searched for something, use our new custom search
+            listVehicles = vehicleRepository.findByBrandContainingIgnoreCaseOrModelContainingIgnoreCase(keyword, keyword);
+        } else {
+            // Otherwise, show everything
+            listVehicles = vehicleRepository.findAll();
+        }
+
+        model.addAttribute("listVehicles", listVehicles);
+        model.addAttribute("keyword", keyword); // Send the keyword back so it stays in the search box
         return "index";
     }
 
