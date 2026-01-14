@@ -10,10 +10,8 @@ import java.util.List;
 
 public interface RentalRepository extends JpaRepository<Rental, Integer> {
 
-    // FIX: This is the method your code was looking for
     List<Rental> findByUser(User user);
 
-    // Keep this for the "Double Booking" check
     @Query("SELECT COUNT(r) FROM Rental r WHERE r.vehicle.vehicleID = :vehicleId " +
             "AND r.status <> 'CANCELLED' " +
             "AND (r.returnDate >= :startDate AND r.rentalDate <= :endDate)")

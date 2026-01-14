@@ -12,32 +12,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.time.temporal.ChronoUnit and com.example.vehiclerental.repository.VehicleRepository;
+import java.time.temporal.ChronoUnit;
+import com.example.vehiclerental.repository.VehicleRepository;
 
 @Controller
 @RequestMapping("/rentals")
 public class RentalController {
 
-    // Add this at the top of the class with other Autowired items
     @Autowired
     private com.example.vehiclerental.repository.VehicleRepository vehicleRepository;
 
     @PostMapping("/checkout")
     public String proceedToCheckout(@ModelAttribute("rental") Rental rental, Model model) {
 
-        // 1. Fetch the full Vehicle details (Brand, Price, etc.)
         Vehicle vehicle = vehicleRepository.findById(rental.getVehicle().getVehicleID()).orElse(null);
         rental.setVehicle(vehicle);
 
-        // 2. Calculate the Number of Days
         long days = java.time.temporal.ChronoUnit.DAYS.between(rental.getRentalDate(), rental.getReturnDate());
-        if (days < 1) days = 1; // Minimum 1 day rental
+        if (days < 1) days = 1;
 
-        // 3. Calculate Total Price
         double totalPrice = days * vehicle.getPricePerDay();
         rental.setTotalCost(totalPrice);
 
-        // 4. Send data to the checkout page
         model.addAttribute("rental", rental);
         model.addAttribute("days", days);
 
@@ -48,8 +44,6 @@ public class RentalController {
     @Autowired
     private RentalService rentalService;
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
     @Autowired
     private RentalRepository rentalRepository;
 
@@ -73,7 +67,13 @@ public class RentalController {
     }
 
     @PostMapping("/confirmBooking")
-    public String confirmBooking(@ModelAttribute("rental") Rental rental) {
+    public String confirmBooking(@ModelAttribute("rental") Rental rental, HttpSession session) {
+
+        User user = (User) session.getAttribute("loggedInUser");
+        if (user == null) {
+            return "redirect:/login";
+        }
+        rental.setUser(user);
 
         if (rental.getRentalDate() != null && rental.getReturnDate() != null) {
             if (rental.getReturnDate().isBefore(rental.getRentalDate())) {
@@ -121,6 +121,4 @@ public class RentalController {
 
         return "redirect:/rentals/myBookings";
     }
-
-
 }

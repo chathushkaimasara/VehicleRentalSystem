@@ -33,9 +33,9 @@
             <div class="card shadow-sm">
                 <div class="card-header bg-success text-white">Payment Details</div>
                 <div class="card-body">
-                    <form action="/confirmBooking" method="post">
+                    <form action="/rentals/confirmBooking" method="post">
 
-                        <input type="hidden" name="vehicle.vehicleID" value="${rental.vehicle.vehicleID}" />
+                    <input type="hidden" name="vehicle.vehicleID" value="${rental.vehicle.vehicleID}" />
                         <input type="hidden" name="rentalDate" value="${rental.rentalDate}" />
                         <input type="hidden" name="returnDate" value="${rental.returnDate}" />
                         <input type="hidden" name="totalCost" value="${rental.totalCost}" />
