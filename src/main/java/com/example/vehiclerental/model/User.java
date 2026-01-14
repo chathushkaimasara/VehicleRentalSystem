@@ -12,7 +12,10 @@ public class User {
     private String username;
     private String password;
     private String role;
+
+    @Column(name = "FullName")
     private String fullName;
+
 
     public int getUserID() { return userID; }
     public void setUserID(int userID) { this.userID = userID; }
