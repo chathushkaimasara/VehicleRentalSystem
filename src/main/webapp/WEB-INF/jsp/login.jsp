@@ -26,6 +26,13 @@
 
         <button type="submit">Login</button>
     </form>
+    <p style="text-align: center; margin-top: 15px;">
+        Don't have an account? <a href="/register">Register here</a>
+    </p>
+
+    <% if (request.getParameter("success") != null) { %>
+    <p style="color: green; text-align: center;">Registration successful! Please login.</p>
+    <% } %>
 </div>
 </body>
 </html>

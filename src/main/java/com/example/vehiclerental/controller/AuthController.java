@@ -37,6 +37,7 @@ public class AuthController {
             model.addAttribute("error", "Invalid Username or Password");
             return "login";
         }
+
     }
 
     @GetMapping("/logout")
@@ -68,5 +69,6 @@ public class AuthController {
             return "register";
         }
     }
+
 
 }
