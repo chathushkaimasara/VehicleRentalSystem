@@ -50,4 +50,23 @@ public class AuthController {
         return "Controller is working!";
     }
 
+
+    @GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        model.addAttribute("user", new User());
+        return "register";
+
+    }
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") User user, Model model) {
+        boolean isRegistered = userService.registerUser(user);
+
+        if (isRegistered) {
+            return "redirect:/login?success";
+        } else {
+            model.addAttribute("error", "Username already exists! Try another.");
+            return "register";
+        }
+    }
+
 }

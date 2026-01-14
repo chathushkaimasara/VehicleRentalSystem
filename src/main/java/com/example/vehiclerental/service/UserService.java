@@ -4,6 +4,19 @@ import com.example.vehiclerental.model.User;
 import com.example.vehiclerental.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Transactional
+public boolean registerUser(User user) {
+    if (userRepository.findByUsername(user.getUsername()) != null) {
+        return false;
+    }
+
+    user.setRole("CUSTOMER");
+
+    userRepository.save(user);
+    return true;
+}
 
 @Service
 public class UserService {
