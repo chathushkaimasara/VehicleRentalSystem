@@ -129,27 +129,50 @@
 
     <div class="row">
         <c:forEach var="vehicle" items="${listVehicles}">
-        <div class="col-md-4 mb-4">
-            <div class="card vehicle-card shadow-sm">
+            <div class="col-md-4 mb-4">
+                <div class="card vehicle-card shadow-sm">
 
-                <c:if test="${not empty vehicle.image}">
-                <img src="${vehicle.image}" class="card-img-top" alt="Car Image">
-                </c:if>
-                <c:if test="${empty vehicle.image}">
-                <div class="d-flex align-items-center justify-content-center bg-secondary text-white" style="height: 200px;">
-                    <i class="fas fa-car fa-3x"></i>
-                </div>
-                </c:if>
+                    <c:if test="${not empty vehicle.image}">
+                        <img src="${vehicle.image}" class="card-img-top" alt="Car Image">
+                    </c:if>
+                    <c:if test="${empty vehicle.image}">
+                        <div class="d-flex align-items-center justify-content-center bg-secondary text-white" style="height: 200px;">
+                            <i class="fas fa-car fa-3x"></i>
+                        </div>
+                    </c:if>
 
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <h5 class="card-title fw-bold">${vehicle.brand} ${vehicle.model}</h5>
-                        <span class="price-tag">$${vehicle.pricePerDay}/day</span>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h5 class="card-title fw-bold">${vehicle.brand} ${vehicle.model}</h5>
+                            <span class="price-tag">$${vehicle.pricePerDay}/day</span>
+                        </div>
+
+                        <p class="card-text text-muted mb-2">
+                            Status: <span class="badge bg-info text-dark status-badge">${vehicle.status}</span>
+                        </p>
+
+                        <div class="d-grid gap-2">
+                            <a href="/rentals/book/${vehicle.vehicleID}" class="btn btn-outline-primary fw-bold">
+                                Book Now
+                            </a>
+
+                            <c:if test="${sessionScope.loggedInUser.role == 'ADMIN'}">
+                                <a href="/deleteVehicle/${vehicle.vehicleID}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete this car?');">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </c:if>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </c:forEach> <c:if test="${empty listVehicles}">
+        <div class="col-12 text-center text-white mt-5">
+            <h3>No vehicles found matching "${keyword}"</h3>
+            <a href="/" class="btn btn-light mt-3">Clear Search</a>
+        </div>
+    </c:if>
+    </div>
+</div>
 
-                    <p class="card-text text-muted mb-2">
-                        Status: <span class="badge bg-info text-dark status-badge">${vehicle.status}</span>
-                    </p>
-
-                    <div class="d-grid gap-2">
-                        <a href="/
+</body>
+</html>
