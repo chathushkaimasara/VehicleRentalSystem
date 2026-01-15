@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+        body {
             background: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
             background-size: cover;
             height: 100vh;
@@ -14,6 +15,7 @@
             align-items: center;
             justify-content: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
         }
 
         .register-card {
@@ -35,13 +37,18 @@
             color: white !important;
             padding: 12px;
             border-radius: 6px;
+            width: 100%;
         }
 
-        input::placeholder { color: rgba(255, 255, 255, 0.7); }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
         input:focus {
             background: rgba(255, 255, 255, 0.3) !important;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             border-color: white !important;
+            outline: none;
         }
 
         .btn-register {
@@ -53,7 +60,8 @@
             font-size: 16px;
             border-radius: 8px;
             transition: all 0.3s ease;
-            margin-top: 10px;
+            margin-top: 20px;
+            color: white;
         }
 
         .btn-register:hover {
@@ -62,11 +70,30 @@
             box-shadow: 0 5px 15px rgba(46, 213, 115, 0.4);
         }
 
-        h2 { text-align: center; margin-bottom: 30px; font-weight: 700; }
-        label { margin-bottom: 5px; font-weight: 500; margin-top: 15px; display: block; }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
-        a { color: #ffcccb; text-decoration: none; font-weight: 500; }
-        a:hover { color: white; text-decoration: underline; }
+        label {
+            margin-bottom: 5px;
+            font-weight: 500;
+            margin-top: 15px;
+            display: block;
+        }
+
+        a {
+            color: #ffcccb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: white;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -92,7 +119,6 @@
         <label>Password</label>
         <form:password path="password" cssClass="form-control" placeholder="Create a password" required="true"/>
 
-        <br>
         <button type="submit" class="btn btn-primary btn-register">Sign Up</button>
     </form:form>
 
