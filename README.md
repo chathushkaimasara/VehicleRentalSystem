@@ -1,5 +1,4 @@
 # Vehicle Rental System
-[![Ask DeepWiki](https://devin.ai/assets/askdeepwiki.png)](https://deepwiki.com/chathushkaimasara/VehicleRentalSystem)
 
 This is a comprehensive Vehicle Rental web application built using the Spring Boot framework. It allows users to browse, book, and manage vehicle rentals, while providing administrators with tools to manage the vehicle inventory.
 
