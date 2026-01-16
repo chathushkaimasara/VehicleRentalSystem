@@ -1,6 +1,6 @@
 # Vehicle Rental System By Group 11
 
-#Our Team members Plymouth ID and Github usernames
+#Our Team members Github username and Plymouth ID
 
 chathushkaimasara - 10965392
 
